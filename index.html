@@ -161,16 +161,34 @@
   </div>
 
   <div class="container">
-    <h2>Get Your Free Cash Offer</h2>
-    <p>Fill out the quick form below and our team will contact you within 24 hours.</p>
-    <form action="#" method="POST">
-  <input type="text" name="full_name" placeholder="Full Name" />
-  <input type="text" name="property_address" placeholder="Property Address" required />
-  <input type="tel" name="phone_number" placeholder="Phone Number" />
-  <input type="email" name="email" placeholder="Email Address" />
-  <button type="submit">Get Your Offer Now</button>
-</form>
-  </div>
+  <h2>Get Your Free Cash Offer</h2>
+  <p>Fill out the quick form below and our team will contact you within 24 hours.</p>
+
+  <form id="leadForm">
+    <input type="text" name="full_name" placeholder="Full Name" />
+    <input type="text" name="property_address" placeholder="Property Address" required />
+    <input type="tel" name="phone_number" placeholder="Phone Number" id="phone" />
+    <input type="email" name="email" placeholder="Email Address" id="email" />
+    <button type="submit">Get Your Offer Now</button>
+    <p id="form-error" style="display: none; color: red; margin-top: 10px;"></p>
+  </form>
+</div>
+
+<script>
+  document.getElementById("leadForm").addEventListener("submit", function(e) {
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const errorMsg = document.getElementById("form-error");
+
+    if (phone === "" && email === "") {
+      e.preventDefault();
+      errorMsg.innerText = "Please provide at least a phone number or an email address.";
+      errorMsg.style.display = "block";
+    } else {
+      errorMsg.style.display = "none"; // הסתרת ההודעה אם תקין
+    }
+  });
+</script>
 
   <div class="section about">
     <h2>About D&D Developments LLC</h2>
