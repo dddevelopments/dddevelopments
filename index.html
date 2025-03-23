@@ -182,21 +182,15 @@
 
 </div>
 
+
+html
+Copy
+Edit
 <script>
   document.getElementById("leadForm").addEventListener("submit", function(e) {
-    const phone = document.getElementById("phone").value.trim();
-    const email = document.getElementById("email").value.trim();
     const consentChecked = document.getElementById("consentCheckbox").checked;
     const errorMsg = document.getElementById("form-error");
     const successMsg = document.getElementById("form-success");
-
-    if (phone === "" && email === "") {
-      e.preventDefault();
-      errorMsg.innerText = "Please provide at least a phone number or an email address.";
-      errorMsg.style.display = "block";
-      successMsg.style.display = "none";
-      return;
-    }
 
     if (!consentChecked) {
       e.preventDefault();
@@ -207,7 +201,7 @@
     }
 
     errorMsg.style.display = "none";
-    // אפשר להוסיף כאן שליחה ל-Google Sheets או כל פעולה אחרת
+    // כאן אפשר להוסיף שליחה ל-Google Sheets או כל שירות אחר
   });
 </script>
 
