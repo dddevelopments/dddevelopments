@@ -164,29 +164,50 @@
   <h2>Get Your Free Cash Offer</h2>
   <p>Fill out the quick form below and our team will contact you within 24 hours.</p>
 
-  <form id="leadForm">
-    <input type="text" name="full_name" placeholder="Full Name" />
-    <input type="text" name="property_address" placeholder="Property Address" required />
-    <input type="tel" name="phone_number" placeholder="Phone Number" id="phone" />
-    <input type="email" name="email" placeholder="Email Address" id="email" />
-    <button type="submit">Get Your Offer Now</button>
-    <p id="form-error" style="display: none; color: red; margin-top: 10px;"></p>
-  </form>
+ <form id="leadForm">
+  <input type="text" name="full_name" placeholder="Full Name (Optional)" />
+  <input type="text" name="property_address" placeholder="Property Address (Optional)" id="property_address" />
+  <input type="tel" name="phone_number" placeholder="Phone Number (Optional)" id="phone" />
+  <input type="email" name="email" placeholder="Email Address (Optional)" id="email" />
+
+  <label style="font-size: 14px; color: #333; margin-top: 10px;">
+    <input type="checkbox" id="consentCheckbox" required />
+    By submitting this form and signing up for texts, you consent to receive marketing text messages from D&D Developments LLC at the number provided. Consent is not a condition of purchase. Msg & Data rates may apply. Unsubscribe at any time by replying STOP.
+  </label>
+
+  <button type="submit">Get Your Offer Now</button>
+  <p id="form-error" style="display: none; color: red; margin-top: 10px;"></p>
+  <p id="form-success" style="display: none; color: green; margin-top: 10px;">Thank you! We'll be in touch soon.</p>
+</form>
+
 </div>
 
 <script>
   document.getElementById("leadForm").addEventListener("submit", function(e) {
     const phone = document.getElementById("phone").value.trim();
     const email = document.getElementById("email").value.trim();
+    const consentChecked = document.getElementById("consentCheckbox").checked;
     const errorMsg = document.getElementById("form-error");
+    const successMsg = document.getElementById("form-success");
 
     if (phone === "" && email === "") {
       e.preventDefault();
       errorMsg.innerText = "Please provide at least a phone number or an email address.";
       errorMsg.style.display = "block";
-    } else {
-      errorMsg.style.display = "none"; // הסתרת ההודעה אם תקין
+      successMsg.style.display = "none";
+      return;
     }
+
+    if (!consentChecked) {
+      e.preventDefault();
+      errorMsg.innerText = "You must agree to receive text messages in order to submit the form.";
+      errorMsg.style.display = "block";
+      successMsg.style.display = "none";
+      return;
+    }
+
+    errorMsg.style.display = "none";
+    // אפשר להוסיף כאן שליחה ל-Google Sheets או כל פעולה אחרת
   });
 </script>
 
