@@ -184,12 +184,13 @@
 
 <script>
   document.getElementById("leadForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // עוצר שליחה רגילה של הטופס
+
     const consentChecked = document.getElementById("consentCheckbox").checked;
     const errorMsg = document.getElementById("form-error");
     const successMsg = document.getElementById("form-success");
 
     if (!consentChecked) {
-      e.preventDefault();
       errorMsg.innerText = "You must agree to receive text messages in order to submit the form.";
       errorMsg.style.display = "block";
       successMsg.style.display = "none";
@@ -197,9 +198,13 @@
     }
 
     errorMsg.style.display = "none";
-    // כאן אפשר להוסיף שליחה ל-Google Sheets או כל שירות אחר
+    successMsg.style.display = "block";
+
+    // ניקוי הטופס
+    document.getElementById("leadForm").reset();
   });
 </script>
+
 
   <div class="section about">
     <h2>About D&D Developments LLC</h2>
