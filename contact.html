@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | D&D Developments LLC</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    .container {
+      background: #fff;
+      color: #333;
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    p.subtitle {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .contact-info {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .contact-info p {
+      font-size: 18px;
+      margin: 6px 0;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 14px;
+      background-color: #28a745;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    label {
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Have Questions For Us?</h1>
+    <p class="subtitle">Excellent! We would love talking with you and see how we can help!</p>
+
+    <div class="contact-info">
+      <p><strong>📞 Phone:</strong> 216-706-9367</p>
+      <p><strong>📧 Email:</strong> info@dddevelopments.com</p>
+    </div>
+
+    <form id="contactForm">
+      <input type="text" name="first_name" placeholder="First Name" />
+      <input type="text" name="last_name" placeholder="Last Name" />
+      <input type="email" name="email" placeholder="Email" />
+      <textarea name="message" rows="5" placeholder="Your Message..."></textarea>
+
+      <label>
+        <input type="checkbox" id="consentCheckbox" required />
+        By submitting this form and signing up for texts, you consent to receive marketing text messages from D&D Developments LLC at the number provided. Consent is not a condition of purchase. Msg & Data rates may apply. Unsubscribe at any time by replying STOP.
+      </label>
+
+      <button type="submit">Send</button>
+      <p id="form-error" style="display: none; color: red;"></p>
+      <p id="form-success" style="display: none; color: green;">Thank you! We'll be in touch soon.</p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const consentChecked = document.getElementById("consentCheckbox").checked;
+      const errorMsg = document.getElementById("form-error");
+      const successMsg = document.getElementById("form-success");
+
+      if (!consentChecked) {
+        errorMsg.innerText = "You must agree to receive text messages in order to submit the form.";
+        errorMsg.style.display = "block";
+        successMsg.style.display = "none";
+        return;
+      }
+
+      errorMsg.style.display = "none";
+      successMsg.style.display = "block";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
